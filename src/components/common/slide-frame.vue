@@ -10,8 +10,8 @@
                 <slot></slot>
             </div>
             <div class="box-footer">
-                <el-button size="small" @click="click" type="success">确定</el-button>
-                <el-button @click="visible=false" size="small" type="primary">取消</el-button>
+                <Button size="small" @click="click" type="success">确定</Button>
+                <Button @click="visible=false" size="small" type="primary">取消</Button>
             </div>
         </div>
     </transition>

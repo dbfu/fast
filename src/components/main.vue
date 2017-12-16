@@ -6,8 +6,8 @@
       :collapse="isCollapse"
       :default-active="select"
       class="el-menu-vertical-demo"
-      background-color="#272822"
-      text-color="#fff"
+      background-color="#495060"
+      text-color="hsla(0,0%,100%,.7)"
       active-text-color="#ffd04b"
       :router="true">
       <db-menu :model="item" :index="item.route?item.route:''" v-for="(item,index) in menus" :key="item.route?item.route:index">
@@ -20,11 +20,12 @@
 </div>
 </template>
 <script>
-import Menu from "./common/menu";
+import DbMenu from "./common/menu";
 import Header from "./common/header";
+import {Menu} from 'element-ui'
 export default {
   components: {
-    "db-menu": Menu,
+    "db-menu": DbMenu,
     "db-header": Header
   },
   data() {
@@ -130,4 +131,9 @@ export default {
   cursor: pointer;
   white-space: nowrap;
 }
+.el-menu {
+  box-sizing: content-box;
+}
 </style>
+
+

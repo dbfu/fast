@@ -12,6 +12,8 @@
     </el-menu-item>
 </template>
 <script>
+import { Submenu } from "element-ui";
+import { MenuItem } from "element-ui";
 export default {
   name: "Menu",
   props: {

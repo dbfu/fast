@@ -1,7 +1,7 @@
 <template>
   <div class="content-header">
       <div class="content-header-left">
-        <span>{{title}}</span>
+        <span class="title">{{title}}</span>
       </div>
       <div class="content-header-right">
         <slot></slot>
@@ -31,6 +31,10 @@ export default {
 .content-header-right {
   float: right;
   padding-right: 5px;
+}
+.title {
+  font-size: 16px;
+  font-weight: 600;
 }
 .clearfix {
   clear: both;

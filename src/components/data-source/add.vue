@@ -1,8 +1,8 @@
 <template>
   <div>
     <ContentHeader title="用户管理">
-      <el-button size="mini" @click="run" type="success">测试</el-button>
-      <el-button size="mini" @click="save" type="primary">保存</el-button>
+      <Button  @click="run" type="success">测试</Button>
+      <Button  @click="save" type="primary">保存</Button>
     </ContentHeader>
     <ContentBody>
       <db-form ref="form" :rowCount="1" :fileds="fileds" :model="model"></db-form>
@@ -44,6 +44,7 @@ export default {
           text: "name",
           value: "id",
           bind: "typeList",
+          span: 8,
           options:[{
             id:1,
             name: "增加"

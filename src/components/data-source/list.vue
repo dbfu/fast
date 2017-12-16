@@ -1,8 +1,7 @@
 <template>
   <div>
     <ContentHeader title="用户管理">
-      <el-button size="mini" @click="create" type="primary">新建</el-button>
-      <el-button size="mini" type="primary">删除</el-button>
+      <Button @click="create" type="primary">新建</Button>
     </ContentHeader>
     <SearchForm></SearchForm>
     <ContentBody>

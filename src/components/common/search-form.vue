@@ -2,10 +2,10 @@
   <Panel>
       <div slot="body" style="padding:20px 10px;">
         <db-form ref="form" :fileds="fileds">
-          <el-col :span="24" style="text-align:center;">
-              <el-button @click="search" type="primary" style="width:64px;" size="small">搜索</el-button>
-              <el-button @click="reset" type="default" style="width:64px;" size="small">重置</el-button>
-            </el-col>
+          <Col :span="24" style="text-align:center;">
+              <Button @click="search" type="primary" style="width:64px;" >搜索</Button>
+              <Button @click="reset" type="default" style="width:64px;" >重置</Button>
+          </Col>
         </db-form>
       </div>
     </Panel>

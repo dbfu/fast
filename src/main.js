@@ -3,7 +3,11 @@
 import Vue from 'vue'
 import App from './App'
 import router from './router'
-import ElementUI from 'element-ui'
+import {
+  Menu,
+  Submenu,
+  MenuItem
+} from 'element-ui'
 import 'font-awesome/css/font-awesome.css'
 import 'element-ui/lib/theme-chalk/index.css'
 import Loading from './plugins/loading.js'
@@ -11,8 +15,10 @@ import './plugins/loading.css'
 import iView from 'iview';
 import 'iview/dist/styles/iview.css';
 
-Vue.use(ElementUI)
 Vue.use(iView)
+Vue.use(Menu)
+Vue.use(Submenu)
+Vue.use(MenuItem)
 Vue.use(Loading)
 
 Vue.config.productionTip = false

@@ -1,15 +1,5 @@
 <template>
-   <el-table width=""  v-if="tableData && tableData.length" :data="tableData"  :border="true" :stripe="true"  >
-      <el-table-column align="center" :show-overflow-tooltip="true" v-for="item in column"
-        :key="item.key"
-        :prop="item.key"
-        :label="item.title"
-        :width="item.width">
-         <template slot-scope="scope">
-            <TableRow  v-if="scope" :model="scope" :index="item.key"></TableRow>
-         </template>
-      </el-table-column>
-    </el-table>
+   <Table width="" :columns="column"  v-if="tableData && tableData.length" :data="tableData"  :border="false" :stripe="true"  ></Table>
 </template>
 <script>
 import axios from "axios";

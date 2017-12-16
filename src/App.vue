@@ -21,4 +21,7 @@ export default {
   table {
     overflow-y: hidden;
   }
+  html {
+font-family:"Microsoft YaHei","微软雅黑",Arial,sans-serif, "Helvetica Neue",Helvetica,"PingFang SC","Hiragino Sans GB";
+  }
 </style>

@@ -1,0 +1,8 @@
+.db-loading {
+    width: 0%;
+    height: 3px;
+    background-color: #409EFF;
+    z-index: 6666;
+    position: fixed;
+    top: 0;
+}

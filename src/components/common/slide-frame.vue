@@ -10,8 +10,8 @@
                 <slot></slot>
             </div>
             <div class="box-footer">
-                <Button size="small" @click="click" type="success">确定</Button>
-                <Button @click="visible=false" size="small" type="primary">取消</Button>
+                <Button @click="click" type="success">确定</Button>
+                <Button @click="visible=false"  type="primary">取消</Button>
             </div>
         </div>
     </transition>
@@ -61,6 +61,7 @@ export default {
   left: 0;
   right: 0;
   background-color: rgba(0, 0, 0, 0.6);
+  z-index: 1000;
 }
 .box-container {
   position: absolute;
@@ -69,6 +70,7 @@ export default {
   width: 45%;
   background-color: #fff;
   left: 55%;
+  z-index: 1001;
 }
 .box-header {
   width: 100%;
@@ -76,9 +78,10 @@ export default {
   line-height: 50px;
   padding-left: 16px;
   background-color: #f2fafa;
+  font-size: 16px;
 }
 .box-content {
-  padding:10px;
+  padding: 10px;
   overflow: auto;
 }
 .box-footer {

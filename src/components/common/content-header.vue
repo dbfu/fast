@@ -2,6 +2,7 @@
   <div class="content-header">
       <div class="content-header-left">
         <span class="title">{{title}}</span>
+        <a v-if="showBack" @click="$router.go(-1)">返回上一级</a>
       </div>
       <div class="content-header-right">
         <slot></slot>
@@ -13,7 +14,16 @@
 <script>
 export default {
     props: {
-        title: String
+        title: String,
+        showBack:{
+          default: false,
+          type: Boolean
+        }
+    },
+    methods:{
+      back() {
+        this.$router.go(-1);
+      }
     }
 };
 </script>
@@ -35,6 +45,7 @@ export default {
 .title {
   font-size: 16px;
   font-weight: 600;
+  margin-right:2px; 
 }
 .clearfix {
   clear: both;

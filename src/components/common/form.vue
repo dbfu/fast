@@ -88,8 +88,6 @@ export default {
       this.fileds.map(item => {
         if (this.listData[item.bind]) return;
 
-        console.log(item);
-
         if (item.url) {
           axios.get(item.url).then(res => {
             this.$set(this.listData, item.bind, res.data.content);

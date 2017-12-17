@@ -18,20 +18,13 @@ export default {
   },
   computed: {
     fileds() {
-      var temp = [
-        {
-          title: "结果",
-          key: "result",
-          type: "input",
-          span: 20
-        }
-      ];
-      if (!this.model.content) return temp;
+     
+      if (!this.model.content) return;
 
       let patter = /\$\{[^}]*\}/g;
       let result = this.model.content.match(patter);
 
-      if (!result) return temp;
+      if (!result) return;
       let arr = [];
       result.map(item => {
         var title = item.replace("${", "").replace("}", "");
@@ -42,7 +35,6 @@ export default {
           span: 12
         });
       });
-      arr = temp.concat(arr);
       return arr;
     }
   }

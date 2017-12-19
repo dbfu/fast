@@ -67,7 +67,7 @@ export default {
     getList() {
       if (this.url) {
         axios.get(this.url).then(res => {
-          this.tableData = res.data;
+          this.tableData = res.data.content;
         });
       }
     },

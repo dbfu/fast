@@ -8,7 +8,7 @@
 
                     <Input v-else-if="item.type == 'textarea'" type="textarea" :rows="item.rows?item.rows:4" v-model="model[item.key]" :disabled="!!item.disabled" class="overflowhide" :style="item.style" resize="none" />
 
-                    <Select  v-else-if="item.type == 'select'" :disabled="!!item.disabled"   v-model="model[item.key]" :placeholder="item.placeholder?item.placeholder:''" :style="item.style">
+                    <Select  v-else-if="item.type == 'select'"  :disabled="!!item.disabled"   v-model="model[item.key]" :placeholder="item.placeholder?item.placeholder:''" :style="item.style">
                         <Option 
                           v-for="o in listData[item.bind]"
                           :key="o[item.value]"
@@ -74,7 +74,7 @@ export default {
       this.focus();
     }
   },
-  created() {
+  mounted() {
     this.focus();
   },
   methods: {
@@ -85,6 +85,7 @@ export default {
       return this.model;
     },
     focus() {
+
       this.fileds.map(item => {
         if (this.listData[item.bind]) return;
 

@@ -92,6 +92,15 @@ export default {
       params: {}
     };
   },
+  mounted() {
+    if (this.$route.params.id > 0) {
+      this.$axios
+        .get("/api/dataSource/find", { params: { id: this.$route.params.id } })
+        .then(res => {
+          this.model = res.data.content;
+        });
+    }
+  },
   methods: {
     run() {
       this.data = this.$refs.form.getEntity();
@@ -111,9 +120,16 @@ export default {
       });
     },
     save() {
-      axios.post("/api/insert", this.model).then(res => {
-        this.$Message.success('保存成功！');
-        this.$router.push({path:"/main/data-source/list"});
+      axios.post("/api/dataSOurce/add", this.model).then(res => {
+        if (res.data.code == 10000) {
+          this.$Message.success("保存成功！");
+          this.$router.push({ path: "/main/data-source/list" });
+        }
+        else {
+          this.$Message.error(res.data.msg);
+        }
+      }).catch(() => {
+         this.$Message.error("操作失败");
       });
     }
   }

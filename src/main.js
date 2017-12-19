@@ -14,6 +14,7 @@ import Loading from './plugins/loading.js'
 import './plugins/loading.css'
 import iView from 'iview';
 import 'iview/dist/styles/iview.css';
+import axios from "axios"
 
 Vue.use(iView)
 Vue.use(Menu)
@@ -22,6 +23,7 @@ Vue.use(MenuItem)
 Vue.use(Loading)
 
 Vue.config.productionTip = false
+Vue.prototype.$axios = axios;
 
 /* eslint-disable no-new */
 new Vue({

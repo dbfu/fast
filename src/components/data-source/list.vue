@@ -5,7 +5,7 @@
     </ContentHeader>
     <SearchForm></SearchForm>
     <ContentBody>
-      <db-table url="/api/list" :column="column"></db-table>
+      <db-table url="/api/dataSource/list" :column="column"></db-table>
     </ContentBody>
     <SlideFrame @close="visible=false" :isShow="visible" @save="ok">
         <Run :model="data" :data="params"></Run>
@@ -122,11 +122,29 @@ export default {
         {
           title: "操作",
           key: "action",
-          width: 150,
+          width: 180,
           align: "center",
           fixed: "right",
           render: (h, params) => {
             return h("div", [
+               h(
+                "Button",
+                {
+                  props: {
+                    type: "success",
+                    size: "small"
+                  },
+                  style: {
+                    marginRight: "5px"
+                  },
+                  on: {
+                    click: () => {
+                      this.run(params.row);
+                    }
+                  }
+                },
+                "运行"
+              ),
               h(
                 "Button",
                 {
@@ -139,7 +157,9 @@ export default {
                   },
                   on: {
                     click: () => {
-                      this.show(params.index);
+                      this.$router.push({
+                        path: "/main/data-source/add/" + params.row.id
+                      });
                     }
                   }
                 },
@@ -149,7 +169,7 @@ export default {
                 "Button",
                 {
                   props: {
-                    type: "success",
+                    type: "error",
                     size: "small"
                   },
                   on: {
@@ -158,13 +178,13 @@ export default {
                     }
                   }
                 },
-                "运行"
+                "删除"
               )
             ]);
           }
         }
       ],
-      data:{},
+      data: {},
       params: {},
       visible: false,
       show: false,
@@ -186,7 +206,7 @@ export default {
       this.$refs[formName].resetFields();
     },
     create() {
-      this.$router.push({ path: "/main/data-source/add" });
+      this.$router.push({ path: "/main/data-source/add/0" });
     },
     run(row) {
       this.data = row;
@@ -213,11 +233,11 @@ export default {
   width: 100%;
 }
 .ivu-table-cell .ivu-tooltip-rel {
-    overflow: hidden;
-    white-space: nowrap;
-    word-break: keep-all;
-    text-overflow: ellipsis;
-    width: 100%;
+  overflow: hidden;
+  white-space: nowrap;
+  word-break: keep-all;
+  text-overflow: ellipsis;
+  width: 100%;
 }
 .result {
   display: block;

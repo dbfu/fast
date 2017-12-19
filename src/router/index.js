@@ -35,7 +35,7 @@ export default new Router({
           component: DataSourceList,
         },
         {
-          path: 'data-source/add',
+          path: 'data-source/add/:id',
           component: DataSourceAdd,
         }
       ]

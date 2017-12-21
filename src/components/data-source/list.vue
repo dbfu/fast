@@ -3,9 +3,9 @@
     <ContentHeader title="用户管理">
       <Button @click="create" type="primary">新建</Button>
     </ContentHeader>
-    <SearchForm></SearchForm>
+    <SearchForm :fileds="fileds" :model="model" @search="search"></SearchForm>
     <ContentBody>
-      <db-table url="/api/dataSource/list" :column="column"></db-table>
+      <db-table ref="table" url="/api/dataSource/list" :column="column"></db-table>
     </ContentBody>
     <SlideFrame @close="visible=false" :isShow="visible" @save="ok">
         <Run :model="data" :data="params"></Run>
@@ -44,7 +44,8 @@ export default {
       column: [
         {
           title: "名称",
-          key: "title"
+          key: "title",
+          isSerach: true
         },
         {
           title: "类型",
@@ -127,7 +128,7 @@ export default {
           fixed: "right",
           render: (h, params) => {
             return h("div", [
-               h(
+              h(
                 "Button",
                 {
                   props: {
@@ -174,7 +175,24 @@ export default {
                   },
                   on: {
                     click: () => {
-                      this.run(params.row);
+                      this.$Modal.confirm({
+                        title: "提示",
+                        content: "确定删除？",
+                        onOk: () => {
+                          this.$axios
+                            .post("/api/dataSource/delete", {
+                              id: params.row.id
+                            })
+                            .then(res => {
+                              if (res.data.code == "10000") {
+                                this.$Message.success("删除成功！");
+                              } else {
+                                this.$Message.error("删除失败！");
+                              }
+                              this.search();
+                            });
+                        }
+                      });
                     }
                   }
                 },
@@ -184,11 +202,18 @@ export default {
           }
         }
       ],
+      fileds: [
+        {
+          title: "名称",
+          key: "title"
+        }
+      ],
       data: {},
       params: {},
       visible: false,
       show: false,
-      result: ""
+      result: "",
+      model: {}
     };
   },
   methods: {
@@ -215,15 +240,18 @@ export default {
     ok() {
       let sql = this.data.content;
       for (let key in this.params) {
-        sql = sql.replace("${" + key + "}", this.params[key]);
+        sql = sql.replace("${" + key + "}", `'${this.params[key]}'`);
       }
-      axios.get("/api/query", { params: { sql: sql } }).then(res => {
+      axios.get("/api/common/query", { params: { sql: sql } }).then(res => {
         this.visible = false;
         this.$nextTick(() => {
           this.show = true;
           this.result = JSON.stringify(res.data, null, 4);
         });
       });
+    },
+    search() {
+      this.$refs.table.search(this.fileds, this.model);
     }
   }
 };

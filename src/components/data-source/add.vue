@@ -109,9 +109,9 @@ export default {
     ok() {
       let sql = this.data.content;
       for (let key in this.params) {
-        sql = sql.replace("${" + key + "}", this.params[key]);
+        sql = sql.replace("${" + key + "}", `'${this.params[key]}'`);
       }
-      axios.get("/api/query", { params: { sql: sql } }).then(res => {
+      axios.get("/api/common/query", { params: { sql: sql } }).then(res => {
         this.visible = false;
         this.$nextTick(() => {
           this.show = true;
@@ -120,7 +120,14 @@ export default {
       });
     },
     save() {
-      axios.post("/api/dataSOurce/add", this.model).then(res => {
+
+      let url = '/api/dataSource/add';
+
+      if(this.model.id) {
+        url = "/api/dataSource/update";
+      }
+
+      axios.post(url, this.model).then(res => {
         if (res.data.code == 10000) {
           this.$Message.success("保存成功！");
           this.$router.push({ path: "/main/data-source/list" });
